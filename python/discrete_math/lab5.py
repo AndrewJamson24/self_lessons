@@ -16,7 +16,7 @@ while True:
         x = int(input("introduceti nodul de start: "))
         y = int(input("Introduceti nodul de finis: "))
 
-    flow_value = nx.maximum_flow_value(G, x, y)
+    flow_value = nx.maximum_flow(G, x, y)
     print("Capacitatea maxima pe graf este {}".format(flow_value))
     r = input("Doriti capacitatea pentru alt arc?(Da/Nu)").capitalize()
     if r =="Da":
