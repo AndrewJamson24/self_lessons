@@ -3,9 +3,16 @@ from networkx.algorithms import tree
 import matplotlib.pyplot as plt
 import numpy as np
 
+G = nx.Graph
+
 G = nx.read_edgelist("graph6.txt", nodetype=int, data=(("weight", int),))
 nodes = G.nodes
 all_edges = G.edges
+pos=nx.circular_layout(G) 
+nx.draw_networkx(G,pos)
+labels = nx.get_edge_attributes(G,'weight')
+nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
+plt.show()
 
 def Adjacency_matrix():
     print("Matricea de adiacenta")
@@ -49,10 +56,14 @@ def Graph_list():
 def MST():
     mst = tree.minimum_spanning_edges(G,weight="weight", algorithm="prim", data=False)
     edgelist = list(mst)
+    print(edgelist)
     sorted(sorted(e) for e in edgelist)
     H = nx.DiGraph()
     H.add_edges_from(edgelist)
-    nx.draw(H,pos=nx.planar_layout(H) ,with_labels = True,arrows=True)
+    pos=nx.circular_layout(H) 
+    nx.draw_networkx(H,pos)
+    labels = nx.get_edge_attributes(G,'weight')
+    nx.draw_networkx_edge_labels(H,pos,edge_labels=labels)
     plt.show()
 
 
